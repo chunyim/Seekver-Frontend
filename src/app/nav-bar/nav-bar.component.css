@@ -1,0 +1,13 @@
+.navbar-logo img {
+  max-height: 45px; /* Set the maximum height for the logo image */
+}
+
+.bottom-navbar{
+  /* background-color: rgba(128, 128, 128, 0.411) */
+  background-color: gainsboro
+}
+
+.example-action-button {
+  margin-top: 8px;
+  margin-right: 8px;
+}

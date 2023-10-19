@@ -1,0 +1,79 @@
+<!-- 'date',
+'category',
+'title',
+'descriptions',
+'rewards', -->
+
+<!-- <h2>test</h2>
+{{ this.problem | json }} 
+{{ this.dataSource | json}}
+{{ this.problems | json}}-->
+
+<!-- <table mat-table class="mat-elevation-z8" *ngIf="problems">
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Category</th>
+      <td mat-cell *matCellDef="let element"> {{ element.category}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Title</th>
+      <td mat-cell *matCellDef="let element">{{ element.title}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="descriptions">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Description</th>
+      <td mat-cell *matCellDef="let element"> {{element.description}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="rewards">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Rewards</th>
+      <td mat-cell *matCellDef="let element"> {{element.rewards}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <br /> -->
+
+<h2 mat-dialog-title>Problem Details</h2>
+<div>
+  <mat-dialog-content class="mat-typography">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef class="bold-header">Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef class="bold-header">Category</th>
+        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef class="bold-header">Title</th>
+        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="descriptions">
+        <th mat-header-cell *matHeaderCellDef class="bold-header">Description</th>
+        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="rewards">
+        <th mat-header-cell *matHeaderCellDef class="bold-header">Rewards</th>
+        <td mat-cell *matCellDef="let element">{{ element.rewards }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-dialog-content>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

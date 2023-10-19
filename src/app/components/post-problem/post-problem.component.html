@@ -1,0 +1,180 @@
+<div *ngIf="!submitted">
+  <h2>Post a Problem</h2>
+
+  <div class="form-group">
+    <mat-form-field class="example-full-width">
+      <mat-label>Seeker Name</mat-label>
+      <input
+        matInput
+        id="name"
+        required
+        [(ngModel)]="currentUser.username"
+        name="name"
+        disabled
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Posting Date</mat-label>
+      <input
+        matInput
+        id="date"
+        required
+        [value]="problem.date | date : 'yyyy-MM-dd'"
+        name="date"
+        [disabled]="true"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Problem Title</mat-label>
+      <input
+        matInput
+        type="text"
+        id="name"
+        required
+        [(ngModel)]="problem.title"
+        name="name"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        type="text"
+        id="description"
+        required
+        [(ngModel)]="problem.description"
+        name="description"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Rewards</mat-label>
+      <input
+        matInput
+        type="text"
+        id="rewards"
+        required
+        [(ngModel)]="problem.rewards"
+        name="rewards"
+        #rewardsInput="ngModel"
+        placeholder="Amount of rewards you give to the Problem Solver"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="problem.category">
+        <mat-option *ngFor="let category of categories" [value]="category.name">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <!-- <div class="form-group">
+          <label for="seekverName">Seeker Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            [(ngModel)]="currentUser.username"
+            name="name"
+            disabled
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="date">Posting Date</label>
+          <input
+            class="form-control"
+            id="date"
+            required
+            [value]="problem.date | date : 'yyyy-MM-dd'"
+            name="date"
+            [disabled]="true"
+          />
+        </div> -->
+
+        <!-- <div class="form-group">
+          <label for="name">Problem Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            [(ngModel)]="problem.title"
+            name="name"
+          />
+        </div> -->
+        <!-- 
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            class="form-control"
+            id="description"
+            required
+            [(ngModel)]="problem.description"
+            name="description"
+          />
+        </div> -->
+
+        <!-- <div class="form-group">
+          <label for="rewards">Rewards</label>
+          <input
+            class="form-control"
+            id="rewards"
+            required
+            [(ngModel)]="problem.rewards"
+            name="rewards"
+            pattern="^[0-9]+$"
+            #rewardsInput="ngModel"
+          />
+          <div
+            *ngIf="
+              rewardsInput.invalid && (rewardsInput.dirty || rewardsInput.touched)
+            "
+            class="text-danger"
+          >
+            Please enter a valid number for rewards.
+          </div>
+        </div> -->
+
+        <!-- <div class="form-group">
+          <label for="category">Category</label>
+  
+          <select class="form-control" [(ngModel)]="problem.category">
+            <option *ngFor="let category of categories" [ngValue]="category.name">
+              {{ category.name }}
+            </option>
+          </select>
+        </div> -->
+        <div id="centered-button">
+          <button mat-stroked-button (click)="saveProblem()">
+            Submit
+          </button>
+        </div>
+
+        <!-- <button (click)="saveProblem()" class="btn btn-success">Submit</button> -->
+      </div>
+    </div>
+
+    <!-- <button class="btn btn-success" (click)="newProblem()">
+        Add Another Problem
+      </button> -->
+  </div>
+</div>
+<div *ngIf="submitted">
+  <h2>Problem was submitted successfully!</h2>
+  <div id="centered-button">
+    <button mat-raised-button (click)="newProblem()">
+      Add Another Problem
+    </button>
+  </div>
+</div>

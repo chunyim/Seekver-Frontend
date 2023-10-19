@@ -1,0 +1,117 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="(currentProblem.id && showModeratorBoard) || showAdminBoard">
+    <h4>Problem Details</h4>
+
+    <div>
+      <label><strong>Seeker:</strong></label> {{ currentProblem.seekerName }}
+    </div>
+
+    <div>
+      <label><strong>Title:</strong></label> {{ currentProblem.title }}
+    </div>
+
+    <div>
+      <label><strong>Description:</strong></label>
+      {{ currentProblem.description }}
+    </div>
+
+    <div>
+      <label><strong>Post Date:</strong></label>
+      {{ currentProblem.date | date }}
+    </div>
+
+    <!-- <button
+      mat-raised-button
+      color="warn"
+      [routerLink]="['/solver-application', currentProblem.id]"
+      *ngIf="isLoggedIn" 
+    >
+      Be the Solver
+    </button> -->
+    <button
+      mat-stroked-button
+      color="primary"
+      *ngIf="showModeratorBoard || showAdminBoard"
+      routerLink="/problem/{{ currentProblem.id }}"
+    >
+      Edit Problem
+    </button>
+    <!-- <a
+      class="badge badge-warning"
+      routerLink="/problem/{{ currentProblem.id }}"
+      *ngIf="showModeratorBoard || showAdminBoard"
+    >
+      Edit
+    </a> -->
+  </div>
+
+  <div *ngIf="!currentProblem">
+    <p>Please click on a Problem...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentProblem.id" class="edit-form">
+    <h4>Problem</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentProblem.title"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentProblem.description"
+          name="description"
+        />
+      </div>
+
+      <!-- <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentProblem.published ? "Published" : "Pending" }}
+        </div> -->
+    </form>
+
+    <!-- <button
+        class="badge badge-primary mr-2"
+        *ngIf="currentProblem.published"
+        (click)="updatePublished(false)"
+      >
+        UnPublish
+      </button> -->
+    <!-- <button
+        *ngIf="!currentProblem.published"
+        class="badge badge-primary mr-2"
+        (click)="updatePublished(true)"
+      >
+        Publish
+      </button> -->
+
+    <button class="badge badge-danger mr-2" (click)="deleteProblem()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateProblem()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentProblem.id">
+    <br />
+    <p>Cannot access this Problem...</p>
+  </div>
+</ng-template>

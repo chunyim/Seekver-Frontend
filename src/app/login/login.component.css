@@ -1,0 +1,21 @@
+.card-container {
+    max-width: 400px; /* Set the maximum width as per your desired size */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px; /* Add some padding to the card for spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for elevation */
+    border: 1px solid #ccc; /* Add a border for visual separation */
+    border-radius: 8px; /* Add rounded corners for a softer appearance */
+  }
+
+  .logo {
+    width: 180px; /* Adjust the width to your desired size */
+    height: auto; /* This maintains the aspect ratio */
+  }
+
+  .logo-container {
+    text-align: center; 
+  }
+
+  .light-text {
+    opacity: 0.6; 
+  }

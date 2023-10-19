@@ -1,0 +1,53 @@
+<h2>{{ this.currentUser.username }}'s Application</h2>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="application date">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Application Date</th>
+      <td mat-cell *matCellDef="let application">{{ application.applicationDate | date }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="contact method">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Contact Method</th>
+      <td mat-cell *matCellDef="let application">{{ application.contactMethod }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="contact">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Contact</th>
+      <td mat-cell *matCellDef="let application">{{ application.contact }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="message">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Your Message to Seeker</th>
+      <td mat-cell *matCellDef="let application">{{ application.message }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef class="bold-header">Action</th>
+      <td mat-cell *matCellDef="let application">
+        <button mat-stroked-button
+        (click)="openDialog()"
+        >View Problem</button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"
+    ></tr>
+    <!-- <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns; let i = index"
+      [class.active]="row === currentProblem"
+      (click)="setActiveProblem(row, i)"
+    ></tr> -->
+    <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns;"
+    (mouseenter)="onRowHover(row)"
+  ></tr>
+  </table>
+  <br/>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of posted application"
+  >
+  </mat-paginator>

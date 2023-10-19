@@ -1,0 +1,100 @@
+<div *ngIf="!submitted">
+<h2>Solver Application</h2>
+
+<form [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Seeker Name</mat-label>
+    <input matInput [disabled]="true" value="{{ currentProblem.seekerName }}" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Solver Name</mat-label>
+    <input matInput formControlName="userName" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Problem Details</mat-label>
+    <input
+      [disabled]="true"
+      matInput
+      value="{{ currentProblem.description }}"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Application Date</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="applicationDate"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>First Name</mat-label>
+    <input type="text" matInput formControlName="firstName" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Last Name</mat-label>
+    <input type="text" matInput formControlName="lastName" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Contact Method</mat-label>
+    <mat-select
+      formControlName="contactMethod"
+      placeholder="Choose a contact method"
+    >
+      <mat-option value="Email">Email</mat-option>
+      <mat-option value="SMS">SMS</mat-option>
+      <mat-option value="WhatsApp">WhatsApp</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Contact Details</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="contact"
+      placeholder="Your contact details"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Message</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="message"
+      placeholder="You can leave a message here to the seeker"
+    />
+  </mat-form-field>
+
+  <div id="centered-button">
+    <button
+      [disabled]="!applicationForm.valid"
+      mat-raised-button
+    >
+      Apply to be the Solver
+    </button>
+  </div>
+</form>
+</div>
+
+<div *ngIf="submitted">
+  <h4>Application was submitted successfully!</h4>
+  <button mat-raised-button
+  routerLink="/problem-list"
+  >
+    Back to Problem List
+  </button>
+</div>
+
+<!-- userName: req.body.userName,
+firstName: req.body.firstName,
+lastName: req.body.lastName,
+applicationDate: req.body.applicationDate,
+message: req.body.message,
+contactMethod: req.body.contactMethod,
+contact: req.body.contact, -->
