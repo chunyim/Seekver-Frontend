@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from '../models/category.model';
 
-const baseUrl = 'http://localhost:8080/api/categories';
+// const baseUrl = 'http://localhost:8080/api/categories';
+
+const baseUrl = 'https://s-5099.onrender.com/api/categories';
 
 @Injectable({
   providedIn: 'root'
