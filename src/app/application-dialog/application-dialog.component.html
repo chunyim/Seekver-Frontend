@@ -37,6 +37,9 @@
     </table>
   </mat-dialog-content>
 </div>
+<div *ngIf="loading" class="loading-spinner-container">
+  <mat-spinner diameter="30"></mat-spinner>
+</div>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>

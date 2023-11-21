@@ -19,125 +19,91 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
 
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="bold-header">
+      Date
+    </th>
+    <td mat-cell *matCellDef="let problem">{{ problem.date | date }}</td>
+  </ng-container>
 
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="bold-header">
+      Category
+    </th>
+    <td mat-cell *matCellDef="let problem">{{ problem.category }}</td>
+  </ng-container>
 
-  
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bold-header">Date</th>
-      <td mat-cell *matCellDef="let problem">{{ problem.date | date }}</td>
-    </ng-container>
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef class="bold-header">Title</th>
+    <td mat-cell *matCellDef="let problem">{{ problem.title }}</td>
+  </ng-container>
 
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bold-header">Category</th>
-      <td mat-cell *matCellDef="let problem">{{ problem.category }}</td>
-    </ng-container>
+  <ng-container matColumnDef="descriptions">
+    <th mat-header-cell *matHeaderCellDef class="bold-header">Description</th>
+    <td mat-cell *matCellDef="let problem">{{ problem.description }}</td>
+  </ng-container>
 
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef class="bold-header">Title</th>
-      <td mat-cell *matCellDef="let problem">{{ problem.title }}</td>
-    </ng-container>
+  <ng-container matColumnDef="rewards">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="bold-header">
+      Rewards
+    </th>
+    <td mat-cell *matCellDef="let problem">{{ problem.rewards }}</td>
+  </ng-container>
 
-    <ng-container matColumnDef="descriptions">
-      <th mat-header-cell *matHeaderCellDef class="bold-header">Description</th>
-      <td mat-cell *matCellDef="let problem">{{ problem.description }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="rewards">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bold-header">Rewards</th>
-      <td mat-cell *matCellDef="let problem">{{ problem.rewards }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef class="bold-header">Action</th>
-      <td mat-cell *matCellDef="let problem">
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef class="bold-header">Action</th>
+    <td mat-cell *matCellDef="let problem">
       <ng-container *ngIf="isLoggedIn; else elseBlock">
-        <button mat-stroked-button [routerLink]="['/solver-application', problem.id]">Be the Solver</button>
+        <button
+          mat-stroked-button
+          [routerLink]="['/solver-application', problem.id]"
+        >
+          Be the Solver
+        </button>
       </ng-container>
       <ng-template #elseBlock>
-        <button mat-stroked-button [routerLink]="['/login']">Log in to be the Solver</button>
+        <button mat-stroked-button [routerLink]="['/login']">
+          Log in to be the Solver
+        </button>
       </ng-template>
-      </td>
-    </ng-container>
+    </td>
+  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns; let i = index"
-      [class.active]="row === currentProblem"
-      (click)="setActiveProblem(row, i)"
-    ></tr>
-  </table>
-  <br />
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns; let i = index"
+    [class.active]="row === currentProblem"
+    (click)="setActiveProblem(row, i)"
+  ></tr>
+</table>
+<br />
 
-  <mat-paginator
-    [pageSizeOptions]="[10, 20]"
-    showFirstLastButtons
-    aria-label="Select page of posted problems"
-  >
-  </mat-paginator>
-  <br />
+<div *ngIf="loading" class="loading-spinner-container">
+  <mat-spinner diameter="30"></mat-spinner>
+</div>
 
+<mat-paginator
+  [pageSizeOptions]="[10, 20]"
+  showFirstLastButtons
+  aria-label="Select page of posted problems"
+>
+</mat-paginator>
+<br />
 
-
-  <div class="col-md-8">
-    <app-problem-details
-      [viewMode]="true"
-      [currentProblem]="currentProblem"
-    ></app-problem-details>
-  </div>
-
-
-  <!-- <div class="col-md-6">
-    <h4>Problem List</h4>
-    <ul class="list-group">
-      <li
-        class="list-group-item"
-        *ngFor="let problem of problems; let i = index"
-        [class.active]="i == currentIndex"
-        (click)="setActiveProblem(problem, i)"
-      >
-        {{ problem.title }}, {{ problem.rewards }}, {{ problem.seekerName }}
-      </li>
-    </ul>
-
-    <button
-      class="m-3 btn btn-sm btn-danger"
-      (click)="removeAllProblems()"
-      *ngIf="showModeratorBoard || showAdminBoard"
-    >
-      Remove All
-    </button>
-  </div> -->
-
-<!-- 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" matSort>
-
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
-      <td mat-cell *matCellDef="let problem">{{ problem.title }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="rewards">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Rewards</th>
-      <td mat-cell *matCellDef="let problem">{{ problem.rewards }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="seekerName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Seeker Name</th>
-      <td mat-cell *matCellDef="let problem">{{ problem.seekerName }}</td>
-    </ng-container>
-  
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table> -->
+<div class="col-md-8">
+  <app-problem-details
+    [viewMode]="true"
+    [currentProblem]="currentProblem"
+  ></app-problem-details>
+</div>
 
 <button
-  mat-stroked-button color="warn"
+  mat-stroked-button
+  color="warn"
   (click)="removeAllProblems()"
   *ngIf="showModeratorBoard || showAdminBoard"
 >

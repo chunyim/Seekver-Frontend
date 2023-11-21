@@ -11,6 +11,7 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  loading: boolean = false;
   form: any = {
     username: null,
     email: null,
@@ -26,11 +27,13 @@ export class RegisterComponent implements OnInit {
   }
  
   onSubmit(): void {
+    this.loading = true;
     const { username, email, password } = this.form;
  
     this.authService.register(username, email, password).subscribe({
       next: data => {
         console.log(data);
+        this.loading = false;
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },

@@ -1,8 +1,5 @@
-<!-- Here are what we validate in the form:
-•	username: required
-•	password: required, minLength=6 -->
-<br />
 
+<br />
 <div class="col-md-12">
   <div class="card card-container">
     <div class="logo-container">
@@ -61,6 +58,11 @@
           </div>
         </div>
       </div>
+
+      <div *ngIf="loading" class="loading-spinner-container">
+        <mat-spinner diameter="30"></mat-spinner>
+      </div>
+      
       <br />
       <div class="form-group" style="text-align: center;">
         <button mat-raised-button>Sign In</button>

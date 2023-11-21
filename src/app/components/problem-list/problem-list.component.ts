@@ -12,6 +12,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./problem-list.component.css'],
 })
 export class ProblemListComponent implements OnInit {
+  loading: boolean = false;
   problems?: Problem[];
   currentProblem: Problem = {};
   currentIndex = -1;
@@ -56,8 +57,10 @@ export class ProblemListComponent implements OnInit {
   }
 
   retrieveProblems(): void {
+    this.loading = true;
     this.problemService.getAll().subscribe({
       next: (data) => {
+        this.loading = false;
         this.problems = data;
         this.dataSource = new MatTableDataSource<Problem>(this.problems);
         this.dataSource.paginator = this.paginator;

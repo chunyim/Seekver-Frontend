@@ -2,3 +2,19 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.loading-spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+mat-spinner {
+  width: 30px;
+  height: 30px;
+}
+
+mat-spinner circle {
+    stroke: grey !important;
+  }

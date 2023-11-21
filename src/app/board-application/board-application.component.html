@@ -32,12 +32,6 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"
     ></tr>
-    <!-- <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns; let i = index"
-      [class.active]="row === currentProblem"
-      (click)="setActiveProblem(row, i)"
-    ></tr> -->
     <tr
     mat-row
     *matRowDef="let row; columns: displayedColumns;"
@@ -45,6 +39,9 @@
   ></tr>
   </table>
   <br/>
+  <div *ngIf="loading" class="loading-spinner-container">
+    <mat-spinner diameter="30"></mat-spinner>
+  </div>
   <mat-paginator
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons

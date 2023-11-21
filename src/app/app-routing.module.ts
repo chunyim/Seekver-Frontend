@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './board-problem/board-user.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
 
 import { PostProblemComponent } from './components/post-problem/post-problem.component';
 import { ProblemListComponent } from './components/problem-list/problem-list.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
   { path: 'problem-board', component: BoardUserComponent },
   { path: 'application-board', component: BoardApplicationComponent },
   { path: 'mod', component: BoardModeratorComponent },
-  { path: 'admin', component: BoardAdminComponent }, 
   { path: 'problem/:id', component: ProblemDetailsComponent },
   { path: 'post-problem', component: PostProblemComponent },
   { path: 'problem-list', component: ProblemListComponent },

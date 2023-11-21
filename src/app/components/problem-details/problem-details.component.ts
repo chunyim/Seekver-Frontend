@@ -35,8 +35,7 @@ export class ProblemDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private storageService: StorageService
-  ) // private currentProblemService: CurrentProblemService
-  {}
+  ) {}
 
   ngOnInit(): void {
     if (!this.viewMode) {
@@ -54,7 +53,6 @@ export class ProblemDetailsComponent implements OnInit {
     }
 
     this.storageService.saveCurrentProblem(this.currentProblem);
-
   }
 
   getProblem(id: string): void {
@@ -92,8 +90,4 @@ export class ProblemDetailsComponent implements OnInit {
       error: (e) => console.error(e),
     });
   }
-
-  // selectProblem(problem: Problem): void {
-  //   this.currentProblemService.setCurrentProblem(problem);
-  // }
 }

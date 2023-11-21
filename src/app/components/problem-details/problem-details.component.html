@@ -20,29 +20,14 @@
       {{ currentProblem.date | date }}
     </div>
 
-    <!-- <button
-      mat-raised-button
-      color="warn"
-      [routerLink]="['/solver-application', currentProblem.id]"
-      *ngIf="isLoggedIn" 
-    >
-      Be the Solver
-    </button> -->
     <button
       mat-stroked-button
       color="primary"
-      *ngIf="showModeratorBoard || showAdminBoard"
+      *ngIf="showModeratorBoard"
       routerLink="/problem/{{ currentProblem.id }}"
     >
       Edit Problem
     </button>
-    <!-- <a
-      class="badge badge-warning"
-      routerLink="/problem/{{ currentProblem.id }}"
-      *ngIf="showModeratorBoard || showAdminBoard"
-    >
-      Edit
-    </a> -->
   </div>
 
   <div *ngIf="!currentProblem">
@@ -75,26 +60,7 @@
         />
       </div>
 
-      <!-- <div class="form-group">
-          <label><strong>Status:</strong></label>
-          {{ currentProblem.published ? "Published" : "Pending" }}
-        </div> -->
     </form>
-
-    <!-- <button
-        class="badge badge-primary mr-2"
-        *ngIf="currentProblem.published"
-        (click)="updatePublished(false)"
-      >
-        UnPublish
-      </button> -->
-    <!-- <button
-        *ngIf="!currentProblem.published"
-        class="badge badge-primary mr-2"
-        (click)="updatePublished(true)"
-      >
-        Publish
-      </button> -->
 
     <button class="badge badge-danger mr-2" (click)="deleteProblem()">
       Delete

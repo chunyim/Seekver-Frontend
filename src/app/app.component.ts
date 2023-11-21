@@ -14,8 +14,6 @@ import { AuthService } from './_services/auth.service';
 // The App Component template also has a Logout button link that call logout() method and reload the window.
 
 export class AppComponent {
-  title = 'seekver';
-
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;

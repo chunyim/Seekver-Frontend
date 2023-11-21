@@ -1,4 +1,3 @@
-import { Application } from './../models/application';
 import { Component, Input } from '@angular/core';
 import { StorageService } from '../_services/storage.service';
 import { Problem } from '../models/problem.model';
@@ -9,10 +8,6 @@ import { SolverApplicationService } from './solver-application.service';
 import {
   FormGroup,
   FormBuilder,
-  Form,
-  FormControl,
-  FormArray,
-  FormGroupName,
   Validators,
 } from '@angular/forms';
 
@@ -22,6 +17,7 @@ import {
   styleUrls: ['./solver-application.component.css'],
 })
 export class SolverApplicationComponent {
+  loading: any = false;
   applicationForm!: FormGroup;
   currentUser: any;
   submitted = false;
@@ -106,10 +102,11 @@ export class SolverApplicationComponent {
   }
 
   submitApplication() {
-    console.log(this.applicationForm.getRawValue());
+    this.loading = true;
     this.applicationService
       .makeApplication(this.applicationForm.getRawValue())
       .subscribe((data) => {
+        this.loading = false;
         console.log(data);
       });
     this.submitted = true;

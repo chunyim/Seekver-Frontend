@@ -13,6 +13,7 @@ import { StorageService } from 'src/app/_services/storage.service';
   styleUrls: ['./post-problem.component.css'],
 })
 export class PostProblemComponent implements OnInit {
+  loading: boolean = false;
   problem: Problem = {
     title: '',
     description: '',
@@ -23,13 +24,11 @@ export class PostProblemComponent implements OnInit {
   submitted = false;
   currentUser: any;
   categories: Category[] = [];
-  // postingForm!: FormGroup;
 
   constructor(
     private problemService: ProblemService,
     private categoryService: CategoryService,
     private storageService: StorageService,
-    // private fb: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -42,16 +41,10 @@ export class PostProblemComponent implements OnInit {
     const today = new Date();
     this.problem.date = today; 
 
-    // this.postingForm = this.fb.group({
-    //   title: [''],
-    //   description: [''],
-    //   rewards: [''],
-    //   date: [''],
-    //   category: [''],
-    // })
   }
 
   saveProblem(): void {
+    this.loading = true;
     const data = {
       seekerName: this.currentUser.username,
       title: this.problem.title,
@@ -63,7 +56,7 @@ export class PostProblemComponent implements OnInit {
 
     this.problemService.create(data).subscribe({
       next: (res) => {
-        console.log(res);
+        this.loading = false;
         this.submitted = true;
       },
       error: (e) => console.error(e),

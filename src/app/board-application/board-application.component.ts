@@ -15,6 +15,7 @@ import { HoveredDataService } from '../services/hovered-data.service';
   styleUrls: ['./board-application.component.css'],
 })
 export class BoardApplicationComponent {
+  loading: boolean = false;
   applications!: Application[];
   currentUser?: any;
   dataSource: any;
@@ -45,10 +46,12 @@ export class BoardApplicationComponent {
   }
 
   showApplicationByUserName(): void {
+    this.loading = true;
     this.solverApplicationService
       .retrieveApplicationByUserName(this.currentUser.username)
       .subscribe({
         next: (data) => {
+          this.loading = false;
           this.applications = data;
           this.dataSource = new MatTableDataSource<Application>(this.applications);
           this.dataSource.paginator = this.paginator;
